@@ -1,43 +1,79 @@
 # Memory Manager – Python Simulator
 
-![Memory Manager](./assets/MemoryManager.png)
-
 ## Description
 
-This project is a **memory management simulator** built in Python that divides memory into fixed-size blocks and allows process allocation and deallocation using the **First Fit, Best Fit, and Worst Fit algorithms**.
-The graphical interface (GUI) was implemented using **Tkinter**, visually displaying memory along with occupied and free blocks.
+This project is a **memory management simulator** developed in Python. It divides memory into fixed-size blocks and allows process allocation and deallocation using different memory allocation algorithms such as **First Fit, Best Fit, and Worst Fit**.
+
+The graphical user interface (GUI) was implemented using **Tkinter**, providing a visual representation of memory blocks, including occupied and free spaces.
+
+In addition, the project was extended by modifying the `memoryManager.py` and `gui.py` files to implement **FIFO (First In First Out)** and **LRU (Least Recently Used)** page replacement algorithms.
 
 ---
 
 ## Features
 
-* **Fixed-size memory block division**
+### Fixed Memory Block Division
 
-  * Total memory: 128 KB
-  * Each block size: 2 KB
-  * Each process occupies full blocks, even if the requested size is smaller than the block.
+* Total memory size: **128 KB**
+* Block size: **2 KB**
+* Each process occupies whole blocks, even if the requested size is smaller than a full block.
 
-* **Process allocation**
+---
 
-  * Supported algorithms:
+## Supported Allocation Algorithms
 
-    * **First Fit**: allocates in the first continuous free space large enough for the process
-    * **Best Fit**: allocates in the smallest continuous free space that can fit the process
-    * **Worst Fit**: allocates in the largest available continuous free space
+### Memory Allocation Algorithms
 
-* **Process deallocation**
+* **First Fit**
+  Allocates the process in the first continuous free space large enough to fit it.
 
-  * Any process can be manually deallocated through the code.
+* **Best Fit**
+  Allocates the process in the smallest available continuous free space that can contain it.
 
-* **GUI Visualization (Tkinter)**
+* **Worst Fit**
+  Allocates the process in the largest available continuous free space.
 
-  * Free blocks appear in **green**
-  * Occupied blocks appear in **random colors**
-  * Each continuous process keeps its **fixed color** while allocated
+---
 
-* **Textual display**
+## Page Replacement Algorithms
 
-  * The `display()` function prints the current state of memory in the terminal, showing which blocks are free and which are occupied.
+### FIFO (First In First Out)
+
+* Removes the oldest allocated process from memory when there is not enough space available.
+* Processes are managed using a queue structure.
+
+### LRU (Least Recently Used)
+
+* Removes the least recently used process from memory when memory becomes full.
+* Uses timestamps to track process usage.
+
+---
+
+## Process Deallocation
+
+* Processes can be manually deallocated from memory through the program.
+
+---
+
+## GUI Visualization (Tkinter)
+
+* Free blocks are displayed in **green**
+* Occupied blocks are displayed in **red**
+* Process names are shown inside occupied blocks
+* Buttons are available for:
+
+  * First Fit
+  * Best Fit
+  * Worst Fit
+  * FIFO
+  * LRU
+  * Deallocate
+
+---
+
+## Terminal Display
+
+The `display()` function prints the current memory status in the terminal, showing which blocks are free and which are occupied.
 
 ---
 
@@ -48,38 +84,49 @@ memory-manager/
 │
 ├── block.py           # Block class representing each memory block
 ├── memoryManager.py   # MemoryManager class with allocation/deallocation logic
-├── gui.py             # Tkinter graphical interface
-└── main.py            # Main script to test the simulator
+├── gui.py             # Tkinter graphical user interface
+└── main.py            # Main script to run the simulator
 ```
 
 ---
 
 ## How to Use
 
-1. Clone the project:
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Yuri-Diego/memory-manager.git
 cd memory-manager
 ```
 
-2. Run the simulator using Python 3.13 or higher:
+### 2. Run the Simulator
+
+Use Python 3.13 or higher:
 
 ```bash
 python main.py
 ```
 
-3. The GUI will open displaying the memory:
+### 3. GUI Visualization
 
-   * Green blocks → free
-   * Colored blocks → occupied by processes
+The GUI window will open showing the memory state:
+
+* Green blocks → Free memory
+* Red blocks → Occupied memory
 
 ---
 
-## Notes
+## Important Notes
 
-* **Partial allocation**: each process occupies full blocks; if the process does not completely fill a block, the remaining space in that block cannot be used by another process.
-* **Automatic deallocation** has not been implemented yet. Currently, processes must be manually deallocated using `deallocate(process)`.
+* **Partial Allocation:**
+  Each process occupies complete memory blocks. If a process does not fully use a block, the remaining space in that block cannot be shared with another process.
+
+* **Manual Deallocation:**
+  Currently, processes must be manually deallocated using:
+
+```python id="kxh9c0"
+deallocate(process)
+```
 
 ---
 
@@ -92,6 +139,7 @@ python main.py
 
 ## Future Improvements
 
-* Implement **automatic deallocation** when there is not enough available space.
-* Add GUI buttons to **allocate and deallocate processes manually**.
-* Improve visualization by showing process names centered inside larger blocks.
+* Implement automatic deallocation when memory becomes full.
+* Add more interactive GUI controls for allocation and deallocation.
+* Improve the visualization by centering process names inside larger blocks.
+* Add different colors for different processes instead of a single occupied color.
