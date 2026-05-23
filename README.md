@@ -1,97 +1,97 @@
-# Gerenciador de Memória – Simulador em Python
+# Memory Manager – Python Simulator
 
-![Gerenciador de Memoria](./assets/MemoryManager.png)
+![Memory Manager](./assets/MemoryManager.png)
 
-## Descrição
+## Description
 
-Este projeto é um **simulador de gerenciamento de memória** em Python, que divide a memória em blocos de tamanho fixo e permite alocação e desalocação de processos utilizando **algoritmos First Fit, Best Fit e Worst Fit**.
-A interface gráfica (GUI) foi implementada em **Tkinter**, mostrando visualmente a memória e os blocos ocupados e livres.
-
----
-
-## Funcionalidades
-
-* **Divisão de memória em blocos fixos**
-
-  * Memória total: 128 KB
-  * Tamanho de cada bloco: 2 KB
-  * Cada processo ocupa blocos inteiros (mesmo que o tamanho solicitado seja menor que o bloco).
-
-* **Alocação de processos**
-
-  * Algoritmos suportados:
-
-    * **First Fit**: aloca no primeiro espaço livre contínuo suficiente
-    * **Best Fit**: aloca no menor espaço livre contínuo que comporte o processo
-    * **Worst Fit**: aloca no maior espaço livre contínuo disponível
-
-* **Desalocação de processos**
-
-  * É possível desalocar qualquer processo manualmente pelo código.
-
-* **Visualização em GUI (Tkinter)**
-
-  * Blocos livres aparecem em **verde**
-  * Blocos ocupados aparecem com **cores aleatórias**
-  * Cada processo contínuo mantém sua **cor fixa** enquanto estiver alocado
-
-* **Display textual**
-
-  * Função `display()` imprime no terminal o estado atual da memória, mostrando quais blocos estão livres e quais estão ocupados.
+This project is a **memory management simulator** built in Python that divides memory into fixed-size blocks and allows process allocation and deallocation using the **First Fit, Best Fit, and Worst Fit algorithms**.
+The graphical interface (GUI) was implemented using **Tkinter**, visually displaying memory along with occupied and free blocks.
 
 ---
 
-## Estrutura do Projeto
+## Features
 
-```
-gerenciador-de-memoria/
+* **Fixed-size memory block division**
+
+  * Total memory: 128 KB
+  * Each block size: 2 KB
+  * Each process occupies full blocks, even if the requested size is smaller than the block.
+
+* **Process allocation**
+
+  * Supported algorithms:
+
+    * **First Fit**: allocates in the first continuous free space large enough for the process
+    * **Best Fit**: allocates in the smallest continuous free space that can fit the process
+    * **Worst Fit**: allocates in the largest available continuous free space
+
+* **Process deallocation**
+
+  * Any process can be manually deallocated through the code.
+
+* **GUI Visualization (Tkinter)**
+
+  * Free blocks appear in **green**
+  * Occupied blocks appear in **random colors**
+  * Each continuous process keeps its **fixed color** while allocated
+
+* **Textual display**
+
+  * The `display()` function prints the current state of memory in the terminal, showing which blocks are free and which are occupied.
+
+---
+
+## Project Structure
+
+```bash
+memory-manager/
 │
-├── block.py           # Classe Block que representa cada bloco de memória
-├── memoryManager.py   # Classe MemoryManager com lógica de alocação/desalocação
-├── gui.py             # Interface gráfica em Tkinter
-└── main.py            # Script principal para testar o simulador
+├── block.py           # Block class representing each memory block
+├── memoryManager.py   # MemoryManager class with allocation/deallocation logic
+├── gui.py             # Tkinter graphical interface
+└── main.py            # Main script to test the simulator
 ```
 
 ---
 
-## Como Usar
+## How to Use
 
-1. Clone o projeto:
+1. Clone the project:
 
 ```bash
 git clone https://github.com/Yuri-Diego/memory-manager.git
-cd gerenciador-de-memoria
+cd memory-manager
 ```
 
-2. Execute o simulador com Python 3.13 ou superior:
+2. Run the simulator using Python 3.13 or higher:
 
 ```bash
 python main.py
 ```
 
-3. A GUI será aberta mostrando a memória:
+3. The GUI will open displaying the memory:
 
-   * Blocos verdes → livres
-   * Blocos coloridos → ocupados por processos
-
----
-
-## Observações
-
-* **Alocação parcial**: cada processo ocupa blocos inteiros; se o processo não preencher um bloco totalmente, o restante do bloco não pode ser usado por outro processo.
-* **Desalocação automática** ainda não está implementada. Atualmente, os processos devem ser desalocados manualmente usando `deallocate(process)`.
+   * Green blocks → free
+   * Colored blocks → occupied by processes
 
 ---
 
-## Dependências
+## Notes
 
-* Python 3.13 ou superior
-* Tkinter (geralmente já incluso no Python padrão)
+* **Partial allocation**: each process occupies full blocks; if the process does not completely fill a block, the remaining space in that block cannot be used by another process.
+* **Automatic deallocation** has not been implemented yet. Currently, processes must be manually deallocated using `deallocate(process)`.
 
 ---
 
-## Próximos Passos
+## Dependencies
 
-* Implementar **desalocação automática** quando não houver espaço suficiente.
-* Adicionar botões na GUI para **alocar e desalocar processos manualmente**.
-* Melhorar visualização para mostrar nomes dos processos centralizados em blocos grandes.
+* Python 3.13 or higher
+* Tkinter (usually included with standard Python installation)
+
+---
+
+## Future Improvements
+
+* Implement **automatic deallocation** when there is not enough available space.
+* Add GUI buttons to **allocate and deallocate processes manually**.
+* Improve visualization by showing process names centered inside larger blocks.
